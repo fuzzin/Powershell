@@ -1,0 +1,34 @@
+$reqNum = 12345
+$Server = Servername
+$Database = Database
+
+$Query = "select * FROM ITSecurity_Added WHERE UserInfoId = $reqNum"
+$Query2 = "select * FROM ITSSecurity_AppsNoRoleDefined WHERE UserInfoId = $reqNum"
+
+$conn = New-Object System.Data.SqlClient.SqlConnection
+$conn.ConnectionString = "Server = $Server; Database = $Database; Integrated Security = True"
+
+$Cmd = New-Object System.Data.SqlClient.SqlCommand
+$Cmd.Connection = $Conn
+$Cmd.CommandText = $Query
+
+$conn.Open()
+
+$adapter = New-Object System.Data.sqlclient.sqlDataAdapter $cmd
+$dataset = New-Object System.Data.DataSet
+$adapter.Fill($dataSet) | Out-Null
+
+$conn.Close()
+
+$ID = $dataSet.Tables[0].Rows[0][1]
+$firstName = $dataSet.Tables[0].Rows[0][2]
+$lastName = $dataSet.Tables[0].Rows[0][3]
+$jobTitle = $dataSet.Tables[0].Rows[0][4]
+$SSN = $dataSet.Tables[0].Rows[0][5]
+$DOB = $dataSet.Tables[0].Rows[0][6]
+$mgr = $dataSet.Tables[0].Rows[0][7] + ", " + $dataSet.Tables[0].Rows[0][3]
+$mgrDept = $dataSet.Tables[0].Rows[0][8]
+$submitter = $dataSet.Tables[0].Rows[0][9]
+$comments = $dataSet.Tables[0].Rows[0][10]
+$empType = $dataSet.Tables[0].Rows[0][00]
+$empType = $empType.substring(0,3)
