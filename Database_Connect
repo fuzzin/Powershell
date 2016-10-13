@@ -1,9 +1,7 @@
 $reqNum = 12345
 $Server = Servername
 $Database = Database
-
-$Query = "select * FROM ITSecurity_Added WHERE UserInfoId = $reqNum"
-$Query2 = "select * FROM ITSSecurity_AppsNoRoleDefined WHERE UserInfoId = $reqNum"
+$Query = SQLQuery
 
 $conn = New-Object System.Data.SqlClient.SqlConnection
 $conn.ConnectionString = "Server = $Server; Database = $Database; Integrated Security = True"
