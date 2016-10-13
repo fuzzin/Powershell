@@ -9,6 +9,7 @@ $colDomain = "A"
 $colID = "B"
 $colADGroup = "C"
 $colADGroup2 = "D"
+$colError = "A"
 
 $row = 1
 	
@@ -35,9 +36,15 @@ for ($i = 1; $i -lt $rowCount; $i++){
 	
 	#Insert AD changes here
 
+	$ws.cells.Item($row,$ColumnOutput).Value() = "$output"
+	
+	if ($Error){
+		$ws2.cells.Item($row,$colError).Value() = $Error[0]
+	}
+
 	$row++
 }
 	
-#$xl.Quit()
+$xl.Quit()
 [System.Runtime.Interopservices.Marshal]::ReleaseComObject($xl)
 
