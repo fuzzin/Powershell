@@ -3,11 +3,14 @@ $ErrorArray = @()
 $Filepath
 $ErrorFilepath
 
+$Total = Get-Content -Path $Filepath 
+$Total = $Total.Count 
+
 Get-Content -Path $Filepath |
 ForEach-Object {
 
 	$Error.Clear()
-	Write-Host $count
+	Write-Host "$Count\$Total " -NoNewline
 	
 	#Insert AD changes here
 
