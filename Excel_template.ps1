@@ -1,6 +1,8 @@
+#Purpose: per loop, allows you to pull mulitple pieces of data from a single excel row
+
 $Filepath
 $xl = New-Object -COM "Excel.Application"
-$xl.Visible = $true
+$xl.Visible = $true #opens excel document so you can view the changes as they are being made
 $wb = $xl.Workbooks.Open($Filepath)
 $ws = $wb.Sheets.Item(1)
 $ws2 = $wb.Sheets.Item(2) #for errors
@@ -38,9 +40,7 @@ for ($i = 1; $i -lt $rowCount; $i++){
 
 	$ws.cells.Item($row,$ColumnOutput).Value() = "$output"
 	
-	if ($Error){
-		$ws2.cells.Item($row,$colError).Value() = $Error[0]
-	}
+	if ($Error){ $ws2.cells.Item($row,$colError).Value() = $Error[0] }
 
 	$row++
 }
